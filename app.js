@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 
 const app = express();
@@ -7,6 +8,12 @@ const port = 8081;
 
 // database connection
 const db = require('./config/mongoose');
+
+// middlewares
+app.use(express.static('assets'));
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+
 
 
 app.use('/', require('./backend/routes/index.js'));

@@ -7,12 +7,14 @@
     <title>
         <%= title %>
     </title>
+    <link rel="stylesheet" href="../assets/css/home.css">
+
 </head>
 
 <body>
     <h1>X-meme</h1>
 
-    <form method="POST" action="/memes">
+    <form method="POST" action="/post_memes">
         <label for="name">Name</label>
         <input type="text" name="name" placeholder="Enter your name" required>
         <label for="url">URL</label>
@@ -21,6 +23,28 @@
         <input type="text" name="caption" placeholder="Enter the caption" required>
         <input type="submit" value="Post your meme">
     </form>
+
+    <div>
+        <ul>
+            <% for(let index=memes.length-1; index>=0;index--){%>
+                <% let i=memes[index]; %>
+                    <li>
+                        <p>
+                            <%= i.name %>
+                        </p>
+                        <p>
+                            <%= i.caption %>
+                        </p>
+                        <div>
+                            <img src="<%=i.url %>" alt="image">
+                        </div>
+                    </li>
+                    <%}%>
+        </ul>
+
+
+    </div>
+
 
 </body>
 
