@@ -2,11 +2,17 @@ const express = require('express');
 
 
 const app = express();
-const port = 8080;
+const port = 8081;
 
+
+// database connection
+const db = require('./config/mongoose');
+
+
+app.use('/', require('./backend/routes/index.js'));
 
 app.set('view engine', 'ejs');
-app.set('views', './views');
+app.set('views', './frontend/views');
 
 app.listen(port, function(err) {
     if (err) {

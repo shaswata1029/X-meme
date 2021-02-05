@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <h1>X-meme</h1>
+
+    <form method="POST" action="/memes">
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
+        <label for="url">URL</label>
+        <input type="url" name="url" placeholder="Enter the URL of your meme" required>
+        <label for="caption" name="caption">Caption</label>
+        <input type="text" name="caption" placeholder="Enter the caption" required>
+        <input type="submit" value="Post your meme">
+    </form>
+
+</body>
+
+</html>
