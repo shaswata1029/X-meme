@@ -3,9 +3,9 @@ const Meme = require('../models/meme');
 
 module.exports.postMeme = function(req, res) {
 
-    Meme.findOne({ url: req.query.url }, function(err, meme) {
+    Meme.findOne({ url: req.body.url }, function(err, meme) {
         if (err) {
-            console.log('error in creating the meme ');
+            console.log('error in creating the meme 1 ');
             return res.json(404, { message: "error creating the meme" });
         }
         if (meme) {
@@ -13,9 +13,9 @@ module.exports.postMeme = function(req, res) {
             return res.json(409, { message: "duplicate meme URL's not allowed" });
         } else {
 
-            Meme.create({ name: req.query.name, url: req.query.url, caption: req.query.caption }, function(err, meme) {
+            Meme.create({ name: req.body.name, url: req.body.url, caption: req.body.caption }, function(err, meme) {
                 if (err) {
-                    console.log('error in creating the meme ');
+                    console.log('error in creating the meme 2 ');
                     return res.json(404, { message: "error creating the meme" });
                 } else {
                     console.log('meme created');
