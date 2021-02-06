@@ -16,13 +16,26 @@ module.exports.home = function(req, res) {
 }
 
 module.exports.postMeme = function(req, res) {
-    Meme.create({ name: req.body.name, url: req.body.url, caption: req.body.caption }, function(err, meme) {
+
+    Meme.findOne({ url: req.body.url }, function(err, meme) {
         if (err) {
-            console.log('error in creating the user');
-            return res.end('error 404');
+            console.log('error in creating the meme  ');
+            return res.end('Error 404');
         }
-        console.log('meme created');
-        return res.redirect('back');
+        if (meme) {
+            console.log('meme alraedy present');
+            return res.end('Error 409, Meme already present');
+        } else {
+
+            Meme.create({ name: req.body.name, url: req.body.url, caption: req.body.caption }, function(err, meme) {
+                if (err) {
+                    console.log('error in creating the meme ');
+                    return res.end('Error 404');
+                }
+                console.log('meme created');
+                return res.redirect('back');
+            });
+        }
     });
 }
 
