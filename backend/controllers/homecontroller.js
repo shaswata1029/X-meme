@@ -27,39 +27,30 @@ module.exports.postMeme = function(req, res) {
 }
 
 module.exports.editMeme = function(req, res) {
-        const url = req.body.url;
-        const caption = req.body.caption;
-        const id = req.params.id;
-        let update = {};
-        if (caption == "" && url == "") {
-            return res.redirect('back');
-        }
-
-        if (url == "") {
-            update.caption = caption;
-        } else if (caption == "") {
-            update.url = url;
-        } else {
-            update.caption = caption;
-            update.url = url;
-        }
-
-        // Meme.findOneAndUpdate(filter, update, { new: true }, function(err, meme) {
-        //     if (err) {
-        //         console.log('error in updating the user');
-        //         return res.end('error 404');
-        //     }
-        //     console.log('meme updated');
-        //     return res.redirect('back');
-        // });
-
-        Meme.findByIdAndUpdate(id, update, { new: true }, function(err, meme) {
-            if (err) {
-                console.log('error in updating the user');
-                return res.end('error 404');
-            }
-            console.log('meme updated');
-            return res.redirect('back');
-        });
+    const url = req.body.url;
+    const caption = req.body.caption;
+    const id = req.params.id;
+    let update = {};
+    if (caption == "" && url == "") {
+        return res.redirect('back');
     }
-    //
+
+    if (url == "") {
+        update.caption = caption;
+    } else if (caption == "") {
+        update.url = url;
+    } else {
+        update.caption = caption;
+        update.url = url;
+    }
+
+
+    Meme.findByIdAndUpdate(id, update, { new: true }, function(err, meme) {
+        if (err) {
+            console.log('error in updating the user');
+            return res.end('error 404');
+        }
+        console.log('meme updated');
+        return res.redirect('back');
+    });
+}
