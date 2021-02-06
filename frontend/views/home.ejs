@@ -68,7 +68,7 @@
                     </li>
                     <li hidden id="<%= limit+1000 %>">
                         <div class="form-container">
-                            <form method="POST" action="/edit_memes" class="form-template">
+                            <form method="POST" action="/edit_memes/<%= meme.id %>" class="form-template">
                                 <label for="url">URL</label>
                                 <input type="url" name="url" placeholder="Change the URL if you want">
                                 <label for="caption" name="caption">Caption</label>
