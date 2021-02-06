@@ -7,45 +7,81 @@
     <title>
         <%= title %>
     </title>
-    <link rel="stylesheet" href="../assets/css/home.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Big+Shoulders+Stencil+Text:wght@100;400&family=Fredericka+the+Great&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
 
 </head>
 
 <body>
-    <h1>X-meme</h1>
-
-    <form method="POST" action="/post_memes">
-        <label for="name">Name</label>
-        <input type="text" name="name" placeholder="Enter your name" required>
-        <label for="url">URL</label>
-        <input type="url" name="url" placeholder="Enter the URL of your meme" required>
-        <label for="caption" name="caption">Caption</label>
-        <input type="text" name="caption" placeholder="Enter the caption" required>
-        <input type="submit" value="Post your meme">
-    </form>
-
-    <div>
-        <ul>
-            <% for(let index=memes.length-1; index>=0;index--){%>
-                <% let i=memes[index]; %>
-                    <li>
-                        <p>
-                            <%= i.name %>
-                        </p>
-                        <p>
-                            <%= i.caption %>
-                        </p>
-                        <div>
-                            <img src="<%=i.url %>" alt="image">
-                        </div>
-                    </li>
-                    <%}%>
-        </ul>
-
-
+    <div class="heading">
+        <h1>X-meme</h1>
+        <p>Post Your Memes And Unlesah Your Creativity</p>
     </div>
 
+    <hr>
 
+    <div class="form-container">
+        <form method="POST" action="/post_memes" class="form-template">
+            <label for="name">Name</label>
+            <input type="text" name="name" placeholder="Enter your full name" required>
+            <label for="url">URL</label>
+            <input type="url" name="url" placeholder="Enter the URL of your meme here" required>
+            <label for="caption" name="caption">Caption</label>
+            <input type="text" name="caption" placeholder="Be creative with the caption" required>
+            <button type="submit">Post Your Meme</button>
+        </form>
+    </div>
+
+    <div class="heading">
+        <p>laugh out loud and refresh your mind with these memes</p>
+    </div>
+
+    <hr>
+
+    <div class="meme-container">
+        <% for(let index=memes.length-1,limit=100; index>=0 && limit>0;index--,limit--){%>
+            <ul class="meme-template">
+                <% let meme=memes[index]; %>
+                    <li class="name">
+                        <p>
+                            Posted By :
+                            <%= meme.name %>
+                        </p>
+                        <li class="date">
+                            <p>
+                                Posted at:
+                                <%= meme.createdAt %>
+                            </p>
+                        </li>
+                        <p class="caption">
+                            <%= meme.caption %>
+                        </p>
+                        <div class="image">
+                            <a href="<%= meme.url%>" target=_blank><img src="<%=meme.url %>" alt="image"></a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <button type="submit" id="<%= limit%>" onclick="edit(this.id)">Edit</button></a>
+                    </li>
+                    <li hidden id="<%= limit+1000 %>">
+                        <div class="form-container">
+                            <form method="POST" action="/edit_memes" class="form-template">
+                                <label for="url">URL</label>
+                                <input type="url" name="url" placeholder="Change the URL if you want">
+                                <label for="caption" name="caption">Caption</label>
+                                <input type="text" name="caption" placeholder="Change the caption if you want">
+                                <button type="submit">Edit and Submit</button>
+                            </form>
+                        </div>
+                    </li>
+
+            </ul>
+            <%}%>
+    </div>
+    <script type="text/javascript" src="js/home.js"></script>
 </body>
 
 </html>

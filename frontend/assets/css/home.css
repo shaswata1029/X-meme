@@ -1,0 +1,135 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: cyan;
+}
+
+body {
+    background-color: black;
+}
+
+.heading {
+    transform: rotate(355deg);
+}
+
+h1 {
+    color: #CEF0D4;
+    font-family: 'Italianno', cursive;
+    font-size: 130px;
+    font-weight: normal;
+    line-height: 48px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 1px 1px 2px #082b34;
+}
+
+.heading p {
+    color: #CEF0D4;
+    font-family: 'Italianno', cursive;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 65px;
+    font-weight: small;
+    line-height: 20px;
+    text-shadow: 1px 1px 2px #082b34;
+    text-transform: capitalize;
+}
+
+hr {
+    width: 50%;
+    color: #CEF0D4;
+    margin: auto;
+}
+
+.form-container {
+    display: flex;
+    margin: 10px;
+    padding: 20px;
+    align-items: center;
+}
+
+.form-template {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+label {
+    margin: 2px 0px;
+    padding: 2px 0px;
+    font-family: 'Big Shoulders Stencil Text', cursive
+}
+
+input {
+    width: 50%;
+    margin: 2px 0px;
+    padding: 2px 0px;
+    color: black;
+    background-color: whitesmoke;
+    border: 0px;
+    border-radius: 4px;
+    font-family: 'Audiowide', cursive;
+}
+
+button {
+    background-color: blueviolet;
+    border: 0px;
+    border-radius: 4px;
+    margin: 10px 0px;
+    color: cyan;
+    cursor: pointer;
+    width: 10%;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+}
+
+.meme-container {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 10px;
+    padding: 20px;
+    align-items: center;
+    font-family: 'Fredericka the Great', cursive;
+}
+
+.meme-template {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    margin: 20px 0px;
+}
+
+li {
+    list-style: none;
+}
+
+.name {
+    text-transform: capitalize;
+}
+
+.date {
+    margin-top: 5px;
+    font-size: small;
+}
+
+.caption {
+    margin-top: 5px;
+    text-transform: capitalize;
+}
+
+img {
+    height: 500px;
+    width: 500px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 0px rgba(121, 118, 118, 0.5);
+    transition: transform 0.5s ease-in-out;
+}
+
+img:hover {
+    transform: scale(1.05);
+}

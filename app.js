@@ -10,8 +10,8 @@ const port = 8081;
 const db = require('./config/mongoose');
 
 // middlewares
-app.use(express.static('assets'));
-app.use(bodyParser.urlencoded());
+app.use(express.static('./frontend/assets'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
