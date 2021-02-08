@@ -7,17 +7,19 @@
     <title>
         <%= title %>
     </title>
+    <script src="https://kit.fontawesome.com/816962683f.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Big+Shoulders+Stencil+Text:wght@100;400&family=Fredericka+the+Great&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/home.css">
+
 
 </head>
 
 <body>
     <div class="heading">
         <h1>X-meme</h1>
-        <p>Post Your Memes And Unlesah Your Creativity</p>
+        <p>Post Your Memes And Unleash Your Creativity</p>
     </div>
 
     <hr>
@@ -59,7 +61,7 @@
                             <%= meme.caption %>
                         </p>
                         <div class="image">
-                            <a href="<%= meme.url%>" target=_blank><img src="<%=meme.url %>" alt="image"></a>
+                            <a href="<%= meme.url%>" target=_blank><img src="<%=meme.url %>" alt="Image not found.You can change the URL below." ></a>
                         </div>
                     </li>
 
@@ -81,7 +83,15 @@
             </ul>
             <%}%>
     </div>
+    <footer>
+        <p>
+            <i class="far fa-copyright"></i> Shaswata Raha
+        </p>
+        <p>All rights reserved</p>
+    </footer>
+
     <script type="text/javascript" src="js/home.js"></script>
+
 </body>
 
 </html>

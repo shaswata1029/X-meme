@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/X-meme_db', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://shaswata1029:sssbn1029@cluster0.1wybo.mongodb.net/X-meme?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 // connect to the database
 
 

@@ -12,5 +12,7 @@ router.get('/', memeController.findMemes);
 router.get('/:id', memeController.findUniqueMeme);
 // api call to get the meme with the given id.
 
+router.patch('/:id', memeController.editMeme);
+
 
 module.exports = router;
