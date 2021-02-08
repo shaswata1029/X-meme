@@ -1,4 +1,5 @@
 const Meme = require('../models/meme');
+const isImageUrl = require('is-image-url');
 
 module.exports.home = function(req, res) {
     Meme.find({}, function(err, memes) {
@@ -8,7 +9,7 @@ module.exports.home = function(req, res) {
 
         }
         return res.render('home', {
-            title: "Home",
+            title: "X-meme",
             memes: memes
         });
 
@@ -17,26 +18,32 @@ module.exports.home = function(req, res) {
 
 module.exports.postMeme = function(req, res) {
 
-    Meme.findOne({ url: req.body.url }, function(err, meme) {
-        if (err) {
-            console.log('error in creating the meme');
-            return res.end('Error 404');
-        }
-        if (meme) {
-            console.log('meme alraedy present');
-            return res.end('Error 409, Meme already present');
-        } else {
+    let bool = isImageUrl(req.body.url);
+    if (!bool) {
+        console.log('error in creating the meme');
+        return res.end('<h1>Error 404,not a valid image url</h1>');
+    } else {
+        Meme.findOne({ url: req.body.url }, function(err, meme) {
+            if (err) {
+                console.log('error in creating the meme');
+                return res.end('Error 404');
+            }
+            if (meme) {
+                console.log('meme alraedy present');
+                return res.end('Error 409, Meme already present');
+            } else {
 
-            Meme.create({ name: req.body.name, url: req.body.url, caption: req.body.caption }, function(err, meme) {
-                if (err) {
-                    console.log('error in creating the meme ');
-                    return res.end('Error 404');
-                }
-                console.log('meme created');
-                return res.redirect('back');
-            });
-        }
-    });
+                Meme.create({ name: req.body.name, url: req.body.url, caption: req.body.caption }, function(err, meme) {
+                    if (err) {
+                        console.log('error in creating the meme ');
+                        return res.end('Error 404');
+                    }
+                    console.log('meme created');
+                    return res.redirect('back');
+                });
+            }
+        });
+    }
 }
 
 module.exports.editMeme = function(req, res) {
@@ -62,8 +69,18 @@ module.exports.editMeme = function(req, res) {
             if (url == "") {
                 update.caption = caption;
             } else if (caption == "") {
+                let bool = isImageUrl(req.body.url);
+                if (!bool) {
+                    console.log('error in creating the meme');
+                    return res.end('<h1>Error 404,not a valid image url</h1>');
+                }
                 update.url = url;
             } else {
+                let bool = isImageUrl(req.body.url);
+                if (!bool) {
+                    console.log('error in creating the meme');
+                    return res.end('<h1>Error 404,not a valid image url</h1>');
+                }
                 update.caption = caption;
                 update.url = url;
             }

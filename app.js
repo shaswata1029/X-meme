@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
 const app = express();
-// const port = 8081;
+const port = 8081;
 dotenv.config();
 
 // database connection
@@ -28,3 +28,11 @@ app.listen(process.env.PORT, '0.0.0.0', function(err) {
     }
     console.log(`Server is running on port ${process.env.PORT}`);
 });
+
+// app.listen(port, function(err) {
+//     if (err) {
+//         console.log(`Error is ${err} on port ${port}`);
+//         return;
+//     }
+//     console.log(`Server is running on port ${port}`);
+// });

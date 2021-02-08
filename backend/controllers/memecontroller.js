@@ -1,5 +1,6 @@
 const { rawListeners } = require('../models/meme');
 const Meme = require('../models/meme');
+const isImageUrl = require('is-image-url');
 
 
 module.exports.postMeme = function(req, res) {
@@ -7,7 +8,7 @@ module.exports.postMeme = function(req, res) {
 
     Meme.findOne({ url: req.body.url }, function(err, meme) {
         if (err) {
-            console.log('error in creating the meme 1 ');
+            console.log('error in creating the meme  ');
             return res.json(404, { message: "error creating the meme" });
         }
         if (meme) {
@@ -15,14 +16,22 @@ module.exports.postMeme = function(req, res) {
             return res.json(409, { message: "duplicate meme URL's not allowed" });
         } else {
 
+            let bool = isImageUrl(req.body.url);
+            if (!bool) {
+                console.log('Not a valid Image URL');
+                return res.status(404).json({ message: "Not a valid Image URL" });
+            }
+
+
             Meme.create({ name: req.body.name, url: req.body.url, caption: req.body.caption }, function(err, meme) {
                 if (err) {
                     console.log('error in creating the meme 2 ');
                     return res.json(404, { message: "error creating the meme" });
                 } else {
                     console.log('meme created');
-                    return res.json(200, { id: meme.id });
+                    return res.json(201, { id: meme.id });
                 }
+
 
             });
         }
@@ -90,14 +99,26 @@ module.exports.editMeme = function(req, res) {
                     let update = {};
                     if (caption == null && url == null) {
                         console.log('nothing to be updated');
-                        return res.status(404).json();
+                        return res.status(403).json();
                     }
 
                     if (url == null) {
                         update.caption = caption;
                     } else if (caption == null) {
+
+                        let bool = isImageUrl(req.body.url);
+                        if (!bool) {
+                            console.log('Not a valid Image URL');
+                            return res.status(404).json();
+                        }
                         update.url = url;
                     } else {
+                        let bool = isImageUrl(req.body.url);
+                        if (!bool) {
+                            console.log('Not a valid Image URL');
+                            return res.status(404).json();
+                        }
+
                         update.caption = caption;
                         update.url = url;
                     }
@@ -109,7 +130,7 @@ module.exports.editMeme = function(req, res) {
                             return res.status(404).json();
                         }
                         console.log('meme updated');
-                        return res.status(200).json();
+                        return res.status(204).json();
                     });
                 }
             });

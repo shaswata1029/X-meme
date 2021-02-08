@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://shaswata1029:sssbn1029@cluster0.1wybo.mongodb.net/X-meme?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 // connect to the database
 
-
+// mongoose.connect('mongodb+srv://shaswata1029:sssbn1029@cluster0.1wybo.mongodb.net/X-meme_db?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+// // connect to the database
 
 
 //  acquire the connection to check if it is succesful
