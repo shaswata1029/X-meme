@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
+// requiring mongoose
 
 mongoose.connect('mongodb+srv://shaswata1029:sssbn1029@cluster0.1wybo.mongodb.net/X-meme?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
-// connect to the database
+// // connect to the database
 
 // mongoose.connect('mongodb+srv://shaswata1029:sssbn1029@cluster0.1wybo.mongodb.net/X-meme_db?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
-// // connect to the database
+// connect to the database
 
 
 //  acquire the connection to check if it is succesful
@@ -17,3 +18,4 @@ db.once('open', function() {
 // if it is connected then print the message
 
 module.exports = db;
+// exporting the module of database

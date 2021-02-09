@@ -147,3 +147,28 @@ footer {
     height: 60px;
     align-items: center;
 }
+
+@media(max-width:500px) {
+    input {
+        width: 100%;
+    }
+    img {
+        height: 80vw;
+        width: 80vw;
+    }
+    button {
+        width: 30%;
+    }
+}
+
+@media(min-width:750px) {
+    h1 {
+        font-size: 120px;
+    }
+    .heading p {
+        font-size: 60px;
+    }
+}
+
+
+/* added media query for responsive designs */
