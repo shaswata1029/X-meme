@@ -16,11 +16,11 @@ module.exports.postMeme = function(req, res) {
             return res.json(409, { message: "duplicate meme URL's not allowed" });
         } else {
 
-            let bool = isImageUrl(req.body.url);
-            if (!bool) {
-                console.log('Not a valid Image URL');
-                return res.status(404).json({ message: "Not a valid Image URL" });
-            }
+            // let bool = isImageUrl(req.body.url);
+            // if (!bool) {
+            //     console.log('Not a valid Image URL');
+            //     return res.status(404).json({ message: "Not a valid Image URL" });
+            // }
 
 
             Meme.create({ name: req.body.name, url: req.body.url, caption: req.body.caption }, function(err, meme) {
