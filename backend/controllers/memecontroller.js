@@ -54,7 +54,7 @@ module.exports.findMemes = function(req, res) {
                     caption: meme_objects[index].caption
                 });
             }
-            console.log('memes are present');
+            // console.log('memes are present');
             return res.status(200).json(memes);
         }
     });
