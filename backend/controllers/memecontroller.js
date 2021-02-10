@@ -43,7 +43,7 @@ module.exports.findMemes = function(req, res) {
     Meme.find({}, function(err, meme_objects) {
         if (meme_objects.length == 0) {
             // console.log('no memes are present');
-            return res.json(200, []);
+            return res.status(200).json([]);
         } else {
             let memes = [];
             for (let index = 0; index < meme_objects.length; index++) {
@@ -55,7 +55,7 @@ module.exports.findMemes = function(req, res) {
                 });
             }
             console.log('memes are present');
-            return res.json(200, memes);
+            return res.status(200).json(memes);
         }
     });
 }
