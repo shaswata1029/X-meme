@@ -66,7 +66,7 @@ module.exports.findUniqueMeme = function(req, res) {
     Meme.findById(req.params.id, function(err, meme) {
         if (meme) {
             // console.log("meme found");
-            return res.json(200, {
+            return res.status(200).json({
                 id: meme.id,
                 name: meme.name,
                 url: meme.url,
