@@ -68,9 +68,13 @@ module.exports.findUniqueMeme = function(req, res) {
             // console.log("meme found");
             return res.status(200).json({
                 id: meme.id,
+                //  id of the meme
                 name: meme.name,
+                // name of the meme
                 url: meme.url,
+                // url of the meme
                 caption: meme.caption
+                    // caption of the meme
             });
         } else {
             // console.log('meme not found with given id');
@@ -97,6 +101,7 @@ module.exports.editMeme = function(req, res) {
                     const caption = req.body.caption;
                     const id = req.params.id;
                     let update = {};
+                    // calling the update filter on the meme
                     if (caption == null && url == null) {
                         // console.log('nothing to be updated');
                         return res.status(403).json();
@@ -107,6 +112,7 @@ module.exports.editMeme = function(req, res) {
                     } else if (caption == null) {
 
                         let bool = isImageUrl(req.body.url);
+                        // checking if it is a valid image url
                         if (!bool) {
                             // console.log('Not a valid Image URL');
                             return res.status(404).json();
@@ -114,6 +120,7 @@ module.exports.editMeme = function(req, res) {
                         update.url = url;
                     } else {
                         let bool = isImageUrl(req.body.url);
+                        // checking if it is a valid image url
                         if (!bool) {
                             // console.log('Not a valid Image URL');
                             return res.status(404).json();

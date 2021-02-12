@@ -17,7 +17,11 @@ const MemeSchema = new mongoose.Schema({
     timestamps: true
 });
 
+// creating the schema of the memes
+
 
 const Meme = mongoose.model('Meme', MemeSchema);
+// creating the model from the schema
 
 module.exports = Meme;
+// exporting the schema

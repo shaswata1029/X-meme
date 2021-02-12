@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- meta tags for SEO -->
 
     <title>
         <%= title %>
@@ -54,32 +55,38 @@
     <!-- Horizontal rule to divide into sections -->
 
     <div class="meme-container">
+        <!-- component to display all the memes on the page -->
         <% for(let index=memes.length-1,limit=100; index>=0 && limit>0;index--,limit--){%>
             <ul class="meme-template">
                 <% let meme=memes[index]; %>
+                    <!-- getting the meme object -->
                     <li class="name">
                         <p>
                             Posted By :
                             <%= meme.name %>
+                                <!-- displaying the name of the person who posted the meem -->
                         </p>
                         <li class="date">
                             <p>
                                 Posted at:
                                 <%= meme.createdAt %>
+                                    <!-- displaying the date and time when the meme was posted -->
                             </p>
                         </li>
                         <p class="caption">
                             <%= meme.caption %>
+                                <!-- dispalying the caption of the meme -->
                         </p>
                         <div class="image">
                             <a href="<%= meme.url%>" target=_blank><img src="<%=meme.url %>" alt="Image not found.You can change the URL below." ></a>
                         </div>
+                        <!-- dispalying the image of the meme if the url is present  -->
                     </li>
 
                     <li>
                         <button type="submit" id="<%= limit%>" onclick="edit(this.id)">Edit</button></a>
                         <a href="<%= meme.url%>" target="_blank"><button><i class="fas fa-share-square"></i></button></a>
-
+                        <!-- displaying the button for the edit button -->
                     </li>
                     <li hidden id="<%= limit+1000 %>">
                         <div class="form-container">
@@ -87,12 +94,14 @@
                                 <label for="url">URL</label>
                                 <input type="url" name="url" placeholder="Change the URL if you want">
                                 <label for="caption" name="caption">Caption</label>
+                                <!-- the url of the meme can be changed here -->
                                 <input type="text" name="caption" placeholder="Change the caption if you want">
                                 <button type="submit">Edit and Submit</button>
+                                <!-- the caption of the meme can be changed here -->
                             </form>
                         </div>
                     </li>
-
+                    <!-- this section where the meme can be edited will be visible only when edit button is clicked -->
             </ul>
             <%}%>
     </div>

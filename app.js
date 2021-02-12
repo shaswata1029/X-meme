@@ -13,7 +13,9 @@ const db = require('./config/mongoose');
 
 // middlewares
 app.use(express.static('./frontend/assets'));
+// assets for views
 app.use(bodyParser.urlencoded({ extended: true }));
+// parser for the form data
 app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');

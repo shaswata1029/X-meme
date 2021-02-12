@@ -4,13 +4,14 @@ const isImageUrl = require('is-image-url');
 module.exports.home = function(req, res) {
     Meme.find({}, function(err, memes) {
         if (err) {
-            console.log('Error in fetching contacts');
+            // console.log('Error in fetching contacts');
             return res.end('Error 404');
 
         }
         return res.render('home', {
             title: "X-meme",
             memes: memes
+                // returning X-meme as title and memes model in the home page
         });
 
     });
@@ -20,25 +21,26 @@ module.exports.postMeme = function(req, res) {
 
     let bool = isImageUrl(req.body.url);
     if (!bool) {
-        console.log('error in creating the meme');
+        // console.log('error in creating the meme');
         return res.end('<h1>Error 404,not a valid image url</h1>');
+        // checking if the url is a valid image URL
     } else {
         Meme.findOne({ url: req.body.url }, function(err, meme) {
             if (err) {
-                console.log('error in creating the meme');
+                // console.log('error in creating the meme');
                 return res.end('Error 404');
             }
             if (meme) {
-                console.log('meme alraedy present');
+                // console.log('meme alraedy present');
                 return res.end('Error 409, Meme already present');
             } else {
 
                 Meme.create({ name: req.body.name, url: req.body.url, caption: req.body.caption }, function(err, meme) {
                     if (err) {
-                        console.log('error in creating the meme ');
+                        // console.log('error in creating the meme ');
                         return res.end('Error 404');
                     }
-                    console.log('meme created');
+                    // console.log('meme created');
                     return res.redirect('back');
                 });
             }
@@ -51,11 +53,11 @@ module.exports.editMeme = function(req, res) {
 
     Meme.findOne({ url: req.body.url }, function(err, meme) {
         if (err) {
-            console.log('error in updating the meme');
+            // console.log('error in updating the meme');
             return res.end('Error 404');
         }
         if (meme) {
-            console.log('meme alraedy present');
+            // console.log('meme alraedy present');
             return res.end('Error 409, Meme already present');
         } else {
             const url = req.body.url;
@@ -71,14 +73,14 @@ module.exports.editMeme = function(req, res) {
             } else if (caption == "") {
                 let bool = isImageUrl(req.body.url);
                 if (!bool) {
-                    console.log('error in creating the meme');
+                    // console.log('error in creating the meme');
                     return res.end('<h1>Error 404,not a valid image url</h1>');
                 }
                 update.url = url;
             } else {
                 let bool = isImageUrl(req.body.url);
                 if (!bool) {
-                    console.log('error in creating the meme');
+                    // console.log('error in creating the meme');
                     return res.end('<h1>Error 404,not a valid image url</h1>');
                 }
                 update.caption = caption;
@@ -88,10 +90,10 @@ module.exports.editMeme = function(req, res) {
 
             Meme.findByIdAndUpdate(id, update, { new: true }, function(err, meme) {
                 if (err) {
-                    console.log('error in updating the meme');
+                    // console.log('error in updating the meme');
                     return res.end('error 404');
                 }
-                console.log('meme updated');
+                // console.log('meme updated');
                 return res.redirect('back');
             });
         }
